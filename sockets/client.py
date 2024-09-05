@@ -23,7 +23,12 @@ while True:
     recv = s.recv(1024).decode("utf-8")
     for i in recv.split(","):
         if(i != ""):
+            packet , data = i.split(":")
+            if(int(packet) != current_packet_no):
+                current_packet_no = int(packet)
+                continue
             print(current_packet_no ,":" ,i )
+
     current_packet_no += 1
     if(current_packet_no == 1000):
         s.send(bytes("e", 'utf-8'))
