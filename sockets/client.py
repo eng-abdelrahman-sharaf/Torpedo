@@ -19,18 +19,19 @@ while True:
 current_packet_no = 0
 
 while True:
-    s.send(bytes(str(current_packet_no) + "," , 'utf-8'))
+    s.sendall(bytes(str(current_packet_no) + "," , 'utf-8'))
     recv = s.recv(1024).decode("utf-8")
     for i in recv.split(","):
         if(i != ""):
             packet , data = i.split(":")
-            if(int(packet) != current_packet_no):
-                current_packet_no = int(packet)
-                continue
-            print(current_packet_no ,":" ,i )
+            if(int(packet) == current_packet_no):
+                print(current_packet_no ,":" ,data )
+                current_packet_no+=1
+            else:
+                print("reasking for packet: ", current_packet_no)
+                break
 
-    current_packet_no += 1
     if(current_packet_no == 1000):
-        s.send(bytes("e", 'utf-8'))
+        s.sendall(bytes("e", 'utf-8'))
         break
 s.close()
