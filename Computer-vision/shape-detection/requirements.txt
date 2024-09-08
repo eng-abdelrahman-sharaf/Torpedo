@@ -2,3 +2,4 @@ opencv-python==4.10.0.84
 numpy==2.1.1
 pip==24.2
 ipykernel==6.29.5
+matplotlib==3.9.2
