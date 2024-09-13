@@ -1,0 +1,5 @@
+numpy==2.1.1
+pip==24.2
+ipykernel==6.29.5
+matplotlib==3.9.2
+scikit-learn==1.5.2
